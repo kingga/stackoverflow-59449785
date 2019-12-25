@@ -1,5 +1,9 @@
 <?php
 
+use App\User;
+use App\Events\FriendRequestSent;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +15,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function (Request $request) {
+    event(new FriendRequestSent(User::find(1), User::find(1)));
 });
